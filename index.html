@@ -1,12 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Brett Cuthbertson – Developer & Founder</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <header>
     <img src="profile-rounded.png" alt="Brett Cuthbertson" class="profile-pic" />
@@ -16,7 +17,9 @@
   <main>
     <section>
       <h2>About Me</h2>
-      <p>I'm a legally blind developer and entrepreneur building tools that empower users through accessible design. From custom WordPress plugins to smart contract development, I create solutions that bridge vision with execution.</p>
+      <p>I'm a legally blind developer and entrepreneur building tools that empower users through accessible design.
+        From custom WordPress plugins to smart contract development, I create solutions that bridge vision with
+        execution.</p>
     </section>
     <section>
       <h2>Featured Projects</h2>
@@ -26,18 +29,75 @@
         <li><strong>Solidity Smart Contracts</strong> – Coming soon: audit-friendly EVM utilities</li>
       </ul>
     </section>
+    <section id="projects">
+      <h2>🚀 Featured Projects</h2>
+      <div class="repo-grid">
+        <div class="repo-card">
+          <h3>🧩 Simple Shortcodes Lite</h3>
+          <p>A lightweight WordPress plugin for creating custom shortcodes using procedural PHP.</p>
+          <div class="repo-card-footer">
+            <a href="https://github.com/physicsisrelativelycool/simple-shortcodes-lite" target="_blank">View on
+              GitHub →</a>
+          </div>
+        </div>
+        <div class="repo-card">
+          <h3>🛠️ WP CLI Plugin Bundler</h3>
+          <p>Bash-powered bundler to automate plugin versioning, minification, and deployment.</p>
+          <div class="repo-card-footer">
+
+            <a href="https://github.com/physicsisrelativelycool/wp-cli-plugin-bundler" target="_blank">View on
+              GitHub →</a>
+          </div>
+        </div>
+        <div class="repo-card">
+          <h3>🎛️ WP Plugin Settings Lite</h3>
+          <p>A simple object-oriented plugin using the WordPress Settings API. Great for showing OOP understanding.</p>
+                    <div class="repo-card-footer">
+          <a href="https://github.com/physicsisrelativelycool/wp-plugin-settings-lite" target="_blank">View on
+            GitHub  →</a>
+            </div>
+        </div>
+        <div class="repo-card">
+          <h3>🧰 WP Dashboard Widget Contact</h3>
+          <p>A dashboard widget with a built-in contact form and message counter. Demonstrates admin UX and hooks.</p>
+          <div class="repo-card-footer">
+            <a href="https://github.com/physicsisrelativelycool/wp-dashboard-widget-contact" target="_blank">View on
+              GitHub →</a>
+          </div>
+        </div>
+        <div class="repo-card">
+          <h3>🎨 CleanPress Lite Theme</h3>
+          <p>A basic standalone WordPress theme with Customizer support, ideal for learning and customization.</p>
+          <div class="repo-card-footer">
+            <a href="https://github.com/physicsisrelativelycool/cleanpress-lite" target="_blank">View on GitHub →</a>
+          </div>
+        </div>
+        <div class="repo-card">
+          <h3>🔐 Simple Vault Contract</h3>
+          <p>A beginner-friendly Solidity smart contract for securely locking and withdrawing funds.</p>
+          <div class="repo-card-footer">
+            <a href="https://github.com/physicsisrelativelycool/simple-vault-contract" target="_blank">View on
+              GitHub →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section>
       <h2>Contact Me</h2>
-      <form action="https://formspree.io/f/mdkzrrzk" method="POST">
-        <label>Your Name:<br>
-          <input type="text" name="name" required>
-        </label><br>
-        <label>Your Email:<br>
-          <input type="email" name="_replyto" required>
-        </label><br>
-        <label>Message:<br>
-          <textarea name="message" required></textarea>
-        </label><br>
+      <form id="contact-form" action="https://formspree.io/f/mdkzrrzk" method="POST">
+        <div class="form-group">
+          <input type="text" name="name" placeholder=" " required />
+          <label>Your Name</label>
+        </div>
+        <div class="form-group">
+          <input type="email" name="_replyto" placeholder=" " required>
+          <label>Your Email</label>
+        </div>
+        <div class="form-group">
+          <textarea name="message" placeholder=" " required></textarea>
+          <label>Message</label>
+        </div>
         <button type="submit">Send</button>
         <p class="form-message" id="form-message"></p>
       </form>
@@ -47,4 +107,35 @@
     <p>&copy; 2025 Brett Cuthbertson. All rights reserved.</p>
   </footer>
 </body>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.querySelector('#contact-form');
+    const message = document.querySelector('#form-message');
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            Accept: 'application/json'
+          }
+        });
+
+        if (res.ok) {
+          message.innerText = "Thanks for reaching out! I’ll reply as soon as I can.";
+          form.reset();
+        } else {
+          message.innerText = "Oops! Something went wrong. Please try again.";
+        }
+      } catch (err) {
+        message.innerText = "There was a problem sending your message.";
+      }
+    });
+  });
+</script>
+
 </html>
